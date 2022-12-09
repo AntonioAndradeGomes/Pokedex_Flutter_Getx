@@ -42,7 +42,8 @@ class CardPokemon extends StatelessWidget {
                     tag: pokemon.id,
                     child: CachedNetworkImage(
                       imageUrl: pokemon.image,
-                      height: 100,
+                      height:
+                          MediaQuery.of(context).size.width <= 320 ? 50 : 100,
                       fit: BoxFit.fitHeight,
                       placeholder: (context, url) => const Center(
                         child: CircularProgressIndicator(),
@@ -51,15 +52,16 @@ class CardPokemon extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 15,
+                  top: MediaQuery.of(context).size.width <= 320 ? 5 : 15,
                   left: 8,
                   child: Text(
                     pokemon.name,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                      fontSize:
+                          MediaQuery.of(context).size.width <= 320 ? 15 : 18,
                       color: Colors.white,
-                      shadows: [
+                      shadows: const [
                         BoxShadow(
                           color: Colors.blueGrey,
                           offset: Offset(0, 0),
@@ -71,7 +73,7 @@ class CardPokemon extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 40,
+                  top: MediaQuery.of(context).size.width <= 320 ? 35 : 40,
                   left: 8,
                   child: pokemon.types.length == 1
                       ? TypePokemon(

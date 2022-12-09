@@ -6,12 +6,13 @@ import 'package:pokedex_getx_flutter/app/modules/home/repository/pokemons_reposi
 class HomeBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(
-      () => HomeController(
+    Get.put(
+      HomeController(
         repository: PokemonsRepository(
           httpManager: HttpManager(),
         ),
       ),
+      permanent: true,
     );
   }
 }

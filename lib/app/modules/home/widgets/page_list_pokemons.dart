@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:pokedex_getx_flutter/app/modules/home/home_controller.dart';
-import 'package:pokedex_getx_flutter/app/modules/home/widgets/card_pokemon.dart';
+import 'package:pokedex_getx_flutter/app/modules/home/widgets/grid_pokemons.dart';
 
-class ListPokemons extends StatelessWidget {
+class PageListPokemons extends StatelessWidget {
   final _controller = Get.find<HomeController>();
-  ListPokemons({super.key});
+  PageListPokemons({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,26 +39,8 @@ class ListPokemons extends StatelessWidget {
                 final pokemons = _controller.filterPokemons.value!;
                 return RefreshIndicator(
                   onRefresh: () => _controller.getAllPokemons(),
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 1.4,
-                      crossAxisSpacing: 5,
-                      mainAxisSpacing: 5,
-                    ),
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.only(
-                      top: 10,
-                      bottom: 20,
-                      left: 10,
-                      right: 10,
-                    ),
-                    physics: const ScrollPhysics(),
-                    itemCount: pokemons.length,
-                    itemBuilder: (_, index) => CardPokemon(
-                      pokemon: pokemons[index],
-                    ),
+                  child: GridPokemons(
+                    pokemons: pokemons,
                   ),
                 );
               },
